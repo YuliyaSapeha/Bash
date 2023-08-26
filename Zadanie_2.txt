@@ -1,0 +1,178 @@
+1. Зайти в домашнюю директорию
+
+yuliy@DESKTOP-SGJLNP7 MINGW64 ~/OneDrive/Документы/bash
+$
+
+2. Создать папку test 3
+
+yuliy@DESKTOP-SGJLNP7 MINGW64 ~/OneDrive/Документы/bash
+$ mkdir foo test3
+mkdir: cannot create directory ‘foo’: File exists
+
+3. Добавить в папку test 3 три файла 4, 5 и 6, в каждом из которых должно быть по 4 строки row1, row2, row3, row4
+
+yuliy@DESKTOP-SGJLNP7 MINGW64 ~/OneDrive/Документы/bash/test3
+$ echo -e "row1\nrow2\nrow3\nrow4" > 4.txt 
+
+yuliy@DESKTOP-SGJLNP7 MINGW64 ~/OneDrive/Документы/bash/test3
+$ echo -e "row1\nrow2\nrow3\nrow4" > 5.txt
+
+yuliy@DESKTOP-SGJLNP7 MINGW64 ~/OneDrive/Документы/bash/test3
+$ echo -e "row1\nrow2\nrow3\nrow4" > 6.txt
+
+4. Найдите строку row2 в файле 5
+
+yuliy@DESKTOP-SGJLNP7 MINGW64 ~/OneDrive/Документы/bash/test3
+$ grep "row2" 5.txt
+row2
+
+5. Найдите строку row в папке test3
+
+yuliy@DESKTOP-SGJLNP7 MINGW64 ~/OneDrive/Документы/bash
+$ grep 'row' ./test3  -r
+./test3/4.txt:row1
+./test3/4.txt:row2
+./test3/4.txt:row3
+./test3/4.txt:row4
+./test3/5.txt:row1
+./test3/5.txt:row2
+./test3/5.txt:row3
+./test3/5.txt:row4
+./test3/6.txt:row1
+./test3/6.txt:row2
+./test3/6.txt:row3
+./test3/6.txt:row4
+
+6. Посчитайте сколько строк с содержимым row в файле 6
+
+yuliy@DESKTOP-SGJLNP7 MINGW64 ~/OneDrive/Документы/bash/test3
+$ grep 'row' 6.txt -c
+4
+
+7. Найдите файл 5 внутри папки test3
+
+yuliy@DESKTOP-SGJLNP7 MINGW64 ~/OneDrive/Документы/bash
+$ find ./test3  -name 5.txt
+./test3/5.txt
+
+8. Используя команду find, удалите файл 5
+
+yuliy@DESKTOP-SGJLNP7 MINGW64 ~/OneDrive/Документы/bash
+$ find ./test3  -name 5.txt -delete
+
+9. Используя команду echo, добавьте слово test в файл 4
+
+yuliy@DESKTOP-SGJLNP7 MINGW64 ~/OneDrive/Документы/bash
+$ echo "test" >> ./test3/4.txt
+
+10. Замените слово test в файле 4 на fail
+
+yuliy@DESKTOP-SGJLNP7 MINGW64 ~/OneDrive/Документы/bash/test3
+$ sed 's/test/fail/g' 4.txt
+row1
+row2
+row3
+row4
+fail
+
+11. Добавьте в файл 4 слово test так, чтобы сохранилось содержимое
+
+yuliy@DESKTOP-SGJLNP7 MINGW64 ~/OneDrive/Документы/bash
+$ echo "test" >> ./test3/4.txt
+
+12. Просмотрите все процессы для юзеров не только в консоли, которые происходят в системе
+
+yuliy@DESKTOP-SGJLNP7 MINGW64 ~/OneDrive/Документы/bash
+$ ps aux
+      PID    PPID    PGID     WINPID   TTY         UID    STIME COMMAND
+      908     907     908       3700  pty0      197610 21:17:37 /usr/bin/bash
+      907       1     907       6560  ?         197610 21:17:37 /usr/bin/mintty
+      929       1     929      15668  cons0     197610 21:31:54 /usr/bin/bash
+     1003       1    1003      18248  cons3     197610 22:07:58 /usr/bin/bash
+      932       1     932      20052  cons1     197610 21:31:54 /usr/bin/bash
+      971       1     971       9656  cons2     197610 21:32:00 /usr/bin/bash
+     1138    1003    1138       6220  cons3     197610 23:02:43 /usr/bin/ps
+
+13. Убейте процесс 666 в консоли
+
+yuliy@DESKTOP-SGJLNP7 MINGW64 ~
+$ Kill  666
+
+14. Узнайте доступность ресурса artsiomrusau.com, используя ping
+
+yuliy@DESKTOP-SGJLNP7 MINGW64 ~
+$ ping artsiomrusau.com
+
+Обмен пакетами с artsiomrusau.com [185.215.4.92] с 32 байтами данных:
+Превышен интервал ожидания для запроса.
+Превышен интервал ожидания для запроса.
+Превышен интервал ожидания для запроса.
+Превышен интервал ожидания для запроса.
+
+Статистика Ping для 185.215.4.92:
+    Пакетов: отправлено = 4, получено = 0, потеряно = 4
+    (100% потерь)
+
+
+yuliy@DESKTOP-SGJLNP7 MINGW64 ~
+$ ping github.com
+
+Обмен пакетами с github.com [140.82.121.4] с 32 байтами данных:
+Ответ от 140.82.121.4: число байт=32 время=46мс TTL=56
+Ответ от 140.82.121.4: число байт=32 время=53мс TTL=56
+Ответ от 140.82.121.4: число байт=32 время=43мс TTL=56
+Ответ от 140.82.121.4: число байт=32 время=126мс TTL=56
+
+Статистика Ping для 140.82.121.4:
+    Пакетов: отправлено = 4, получено = 4, потеряно = 0
+    (0% потерь)
+Приблизительное время приема-передачи в мс:
+    Минимальное = 43мсек, Максимальное = 126 мсек, Среднее = 67 мсек
+
+15. Отправьте 5 пакетов на сайт artsiomrusau.com
+
+С ТВОИМ САЙТОМ НЕ СРАБОТАЛО, ПОЭТОМУ ПРИКЛАДЫВАЮ РЕШЕНИЕ С github.com
+
+yuliy@DESKTOP-SGJLNP7 MINGW64 ~
+$ ping -n 5 github.com
+
+Обмен пакетами с github.com [140.82.121.3] с 32 байтами данных:
+Ответ от 140.82.121.3: число байт=32 время=38мс TTL=56
+Ответ от 140.82.121.3: число байт=32 время=40мс TTL=56
+Ответ от 140.82.121.3: число байт=32 время=225мс TTL=56
+Ответ от 140.82.121.3: число байт=32 время=61мс TTL=56
+Ответ от 140.82.121.3: число байт=32 время=71мс TTL=56
+
+Статистика Ping для 140.82.121.3:
+    Пакетов: отправлено = 5, получено = 5, потеряно = 0
+    (0% потерь)
+Приблизительное время приема-передачи в мс:
+    Минимальное = 38мсек, Максимальное = 225 мсек, Среднее = 87 мсек
+
+16. Используя GET и команду curl, получите информацию о зарегистрированных питомцах на https://petstore.swagger.io/
+
+yuliy@DESKTOP-SGJLNP7 MINGW64 ~
+$ curl -X 'GET' \
+>  'https://petstore.swagger.io/v2/store/inventory' \
+> -H 'accept: application/json'
+{"totvs":5,"sold":59,"{{PetStatus-Updated}}":15,"6000":1,"string":523,"Happy":1,"pending":21,"available":345,"Not Available":1,"True":1,"dead":2,"soldout":1,"Unavailable":1,"123":1,"VL4EQE":1,"lost":1,"not available":1,"${statusChanged}":1,"true":2,"for rent":1,"avaible":1,"pending, sold":1}
+
+17. Используя POST и команду curl, создайте нового пользователя на https://petstore.swagger.io/
+
+$ curl -X 'POST' \
+>   'https://petstore.swagger.io/v2/user' \
+>   -H 'accept: application/json' \
+>   -H 'Content-Type: application/json' \
+>   -d '{
+>   "id": 397,
+>   "username": "mikola",
+>   "firstName": "line",
+>   "lastName": "lyr",
+>   "email": "uno@gmail.com",
+>   "password": "1111",
+>   "phone": "+79855562345",
+>   "userStatus": 0
+> }
+> '
+{"code":200,"type":"unknown","message":"78562"}
+
